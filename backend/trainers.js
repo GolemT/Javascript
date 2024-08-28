@@ -1,6 +1,5 @@
 class trainers{
-    constructor(trainerID, firstName, lastName, courses, customerIDs){
-        this.trainerID = trainerID;
+    constructor( firstName, lastName, courses, customerIDs){
         this.firstName = firstName;
         this.lastName = lastName;  
         this.courses = courses;

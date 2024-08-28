@@ -1,0 +1,14 @@
+[
+    {
+        "firstName": "drei",
+        "lastName": "Mustermann",
+        "birthDate": "1990-01-01",
+        "address": "Musterstraße 1, 12345 Musterstadt",
+        "gender": "männlich",
+        "bankDetails": "DE1234567890",
+        "subscription": "Premium",
+        "trainerID": 1,
+        "customerCardID": 1001,
+        "appointments": "Keine weil er faul ist"
+    }
+]

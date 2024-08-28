@@ -1,6 +1,5 @@
-class customers{
-    constructor (customerID, firstName, lastName, birthDate, address, gender, bankDetails, subscription, trainerID, customerCardID, appointments){
-        this.customerID =customerID;
+export default class Customers{
+    constructor (firstName, lastName, birthDate, address, gender, bankDetails, subscription, trainerID, customerCardID, appointments){
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
@@ -13,3 +12,4 @@ class customers{
         this.appointments = appointments;
     }
 }
+
