@@ -1,0 +1,20 @@
+[
+    {
+        "firstName": "testname",
+        "lastName": "mayer",
+        "course": "gym",
+        "trainerID": 2
+    },
+    {
+        "firstName": "testname",
+        "lastName": "mayer",
+        "course": "gym",
+        "trainerID": 0
+    },
+    {
+        "firstName": "testname",
+        "lastName": "mayer",
+        "course": "gym",
+        "trainerID": 4
+    }
+]

@@ -177,8 +177,8 @@ app.put('/api/updatetrainer/:id', (req, res) => {
     } catch (error) {
         console.error("Fehler beim bearbeiten des Trainer:", error);
         res.status(500).send({ error: 'Fehler beim bearbeiten des Trainer' });
-    }
-})
+    };
+});
 
 app.delete('/api/deletetrainer/:id', (req, res) => {
     const trainerID = req.params.id
@@ -188,9 +188,13 @@ app.delete('/api/deletetrainer/:id', (req, res) => {
         res.status(201).send({ message: 'Trainer erfolgreich gelöscht' });
     } catch (error) {
         console.error("Fehler beim löschen des Trainers:", error);
-        res.status(500).send({ error: 'Fehler beim löschen des Trainers' });
-    }
-})
+        if(error.message == "Trainer with that ID Not found"){
+            res.status(404).send({ error: error.message });
+        }else{
+            res.status(500).send({ error: 'Fehler beim löschen des Trainers' });
+        }
+    };
+});
 
 app.delete('/api/deletealltrainer', (req, res) => {
     try {
@@ -199,5 +203,5 @@ app.delete('/api/deletealltrainer', (req, res) => {
     } catch (error) {
         console.error("Fehler beim löschen des Trainers:", error);
         res.status(500).send({ error: 'Fehler beim löschen des Trainers' });
-    }
-})
+    };
+});

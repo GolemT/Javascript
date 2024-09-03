@@ -154,10 +154,12 @@ export function readTrainer(trainerID){
 
     try {
 
-        if (trainerArray[trainerID]) {
-            var trainerArray = trainerArray[trainerID];
-            return trainerArray;
-        }
+        for(var i = 0; i < trainerArray.length; i++){
+            if(trainerArray[i].trainerID == trainerID){
+                trainerArray = trainerArray[i];
+                return trainerArray;
+            };
+        };
 
     } catch (e) {
         console.log("Fehler:", e.message);
@@ -167,11 +169,20 @@ export function readTrainer(trainerID){
 }
 
 export function writeTrainer(firstName, lastName, course, customerID) {
+    var trainerData = fs.readFileSync('backend/data/trainers.json', 'utf-8')
+    var oldTrainerArray = [];
+    try{
+        oldTrainerArray = JSON.parse(trainerData);
+    }catch{
+
+    }
+    let trainerID = oldTrainerArray.length;
     let trainer = new Trainer(
         firstName,
         lastName, 
         course,
-        customerID
+        customerID,
+        trainerID
     )
     let trainerArray = [];
     try {
@@ -199,15 +210,18 @@ export function writeTrainer(firstName, lastName, course, customerID) {
 export function updateTrainer (trainerID, firstName, lastName, course, customerID){
     var trainerData = fs.readFileSync('backend/data/trainers.json', 'utf-8')
     var trainerArray = JSON.parse(trainerData);
-
     try {
         
-        if (trainerArray[trainerID]) {
-            trainerArray[trainerID].firstName = firstName;
-            trainerArray[trainerID].lastName = lastName;
-            trainerArray[trainerID].course = course;
-            trainerArray[trainerID].customerID = customerID;
-        }
+        for(var i = 0; i < trainerArray.length; i++){
+            if(trainerArray[i].trainerID == trainerID){
+                trainerArray[i].firstName = firstName;
+                trainerArray[i].lastName = lastName;
+                trainerArray[i].course = course;
+                trainerArray[i].customerID = customerID;
+                break;
+            };
+        };
+
     } catch (e) {
         console.log("Fehler:", e.message);
         return error; 
@@ -221,19 +235,23 @@ export function updateTrainer (trainerID, firstName, lastName, course, customerI
 export function deleteTrainer(trainerID){
     var trainerData = fs.readFileSync('backend/data/trainers.json', 'utf-8')
     var trainerArray = JSON.parse(trainerData);
-
+    var index = 0;
     try {
-        if (trainerArray[trainerID]) {
-            trainerArray.splice(trainerID, 1)
+        for(index = 0; index < trainerArray.length; index++){
+            if(trainerArray[index].trainerID == trainerID){
+                trainerArray.splice(index, 1);
+                let writedata = JSON.stringify(trainerArray, null, 4);
+                fs.writeFileSync('backend/data/trainers.json', writedata);
+                break;
+            };
+        };
+        if(index >= trainerArray.length){
+            throw new Error("Trainer with that ID Not found");
         }
     } catch (e) {
         console.log("Fehler:", e.message);
-        return error; 
-    }
-
-    let writedata = JSON.stringify(trainerArray, null, 4);
-    fs.writeFileSync('backend/data/trainers.json', writedata);
-
+        throw new Error(e.message);
+    };
 }
 
 
