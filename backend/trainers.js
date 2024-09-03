@@ -1,8 +1,8 @@
-class trainers{
-    constructor( firstName, lastName, courses, customerIDs){
+export default class Trainer{
+    constructor( firstName, lastName, course, customerID){
         this.firstName = firstName;
         this.lastName = lastName;  
-        this.courses = courses;
-        this.customerIDs = customerIDs;
+        this.course = course;
+        this.customerID = customerID;
     }
 }
