@@ -8,10 +8,10 @@ body {
 }
 
 button {
-    width: 50vw;
-    height: 10vh;
+    width: 40vw;
+    height: 8vh;
     padding: 10px 20px;
-    font-size: 30px;
+    font-size: 1.5rem;
     margin-bottom: 20px;
     font-weight: bold;
 }
