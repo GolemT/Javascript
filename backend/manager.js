@@ -2,6 +2,7 @@ import fs from 'fs';
 import Customers from './customers.js';
 import Trainer from './trainers.js'
 import { error } from 'console';
+import { v4 as uuidv4 } from 'uuid';
 
 
 export function readAllCustomer(){
@@ -31,14 +32,7 @@ export function readCustomer(customerID){
 }
 
 export function writeCustomer(firstName, lastName, birthDate, address, telefon, eMail, gender, bankDetails, subscription, subscriptionStart, trainerID, customerCardID, appointments) {
-    var customerData = fs.readFileSync('backend/data/customers.json', 'utf-8')
-    var oldCustomerArray = [];
-    try{
-        oldCustomerArray = JSON.parse(customerData);
-    }catch{
-        
-    }
-    let customerID = oldCustomerArray.length;
+    let customerID = uuidv4();
     let customer = new Customers(
         firstName,
         lastName, 
@@ -159,7 +153,7 @@ export function deleteCustomer(customerID){
         console.log("Fehler:", e.message);
         throw new Error(e.message);
     }
-    let writedata = JSON.stringify(customerData, null, 4);
+    let writedata = JSON.stringify(customerArray, null, 4);
     fs.writeFileSync('backend/data/customers.json', writedata);
 }
 
@@ -199,14 +193,7 @@ export function readTrainer(trainerID){
 }
 
 export function writeTrainer(firstName, lastName, course, customerID) {
-    var trainerData = fs.readFileSync('backend/data/trainers.json', 'utf-8')
-    var oldTrainerArray = [];
-    try{
-        oldTrainerArray = JSON.parse(trainerData);
-    }catch{
-
-    }
-    let trainerID = oldTrainerArray.length;
+    let trainerID = uuidv4();
     let trainer = new Trainer(
         firstName,
         lastName, 

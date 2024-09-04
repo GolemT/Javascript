@@ -1,1 +1,23 @@
-"[\n    {\n        \"firstName\": \"customerName\",\n        \"lastName\": \"customerLastName\",\n        \"customerID\": 5\n    },\n    {\n        \"firstName\": \"customerName\",\n        \"lastName\": \"customerLastName\",\n        \"customerID\": 3\n    },\n    {\n        \"firstName\": \"customerName\",\n        \"lastName\": \"customerLastName\",\n        \"customerID\": 2\n    },\n    {\n        \"firstName\": \"customerName\",\n        \"lastName\": \"customerLastNameNEW\",\n        \"customerID\": 7,\n        \"subscription\": \"pilates\",\n        \"subscriptionStart\": \"22.10.2024\"\n    },\n    {\n        \"firstName\": \"customerName\",\n        \"lastName\": \"customerLastName\",\n        \"subscription\": \"pilates\",\n        \"subscriptionStart\": \"22.10.2025\",\n        \"customerID\": 4\n    }\n]"
+[
+    {
+        "firstName": "customerName",
+        "lastName": "customerLastName",
+        "subscription": "aquasize",
+        "subscriptionStart": "17.01.2022",
+        "customerID": "a2069d6b-324e-4aff-a700-6d8d886a9a51"
+    },
+    {
+        "firstName": "customerName",
+        "lastName": "customerLastName",
+        "subscription": "aquasize",
+        "subscriptionStart": "17.01.2022",
+        "customerID": "fb0922e6-fc9f-4898-8bdf-b99d6042f472"
+    },
+    {
+        "firstName": "customerName",
+        "lastName": "customerLastName",
+        "subscription": "aquasize",
+        "subscriptionStart": "17.01.2022",
+        "customerID": "da48fdce-9a01-4a4b-a571-bae369740ae8"
+    }
+]
