@@ -2,6 +2,7 @@
   "name": "javascript",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,6 +18,7 @@
   },
   "homepage": "https://github.com/GolemT/Javascript#readme",
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "uuid": "^10.0.0"
   }
 }
