@@ -72,8 +72,8 @@ export function writeCustomer(firstName, lastName, birthDate, address, telefon, 
 }
 
 export function updatecustomer (customerID, firstName, lastName, birthDate, address, telefon, eMail, gender, bankDetails, trainerID, appointments){
-    var data = fs.readFileSync('backend/data/customers.json', 'utf-8')
-    var customerArray = JSON.parse(data);
+    var customerData = fs.readFileSync('backend/data/customers.json', 'utf-8')
+    var customerArray = JSON.parse(customerData);
     var index = 0;
     try {
 
