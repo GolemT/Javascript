@@ -1,0 +1,14 @@
+body{
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    margin: 0;
+    background-color: #272727;
+}
+button{
+    border: none;
+    background-color: #999999;
+    color: #070707;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}

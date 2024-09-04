@@ -1,9 +1,15 @@
 import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { readAllCustomer, writeCustomer, readCustomer, deleteAllCustomer, updatecustomer, deleteCustomer, aboManager, writeTrainer, readAllTrainer, readTrainer, updateTrainer, deleteTrainer, deleteAllTrainer } from './backend/manager.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = 3000;
 
+app.use(express.static(path.join(__dirname, 'frontend')));
 
 app.listen(port, () => {
     console.log(`Server läuft auf http://localhost:${port}`);
