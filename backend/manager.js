@@ -12,22 +12,33 @@ export function readAllCustomer(){
 export function readCustomer(customerID){
     var customerData = fs.readFileSync('backend/data/customers.json', 'utf-8')
     var customerArray = JSON.parse(customerData);
-
+    var index = 0;
     try {
 
-        if (customerArray[customerID]) {
-            var customer = customerArray[customerID];
-            return customer;
+        for(index = 0; index < customerArray.length; index++){
+            if(customerArray[index].customerID == customerID){
+                customerArray = customerArray[index];
+                return customerArray;
+            };
+        };
+        if(index >= customerArray.length){
+            throw new Error("Kunden mit der ID nicht gefunden");
         }
-
     } catch (e) {
         console.log("Fehler:", e.message);
+        throw new Error(e.message);
     }
-
-    return error; 
 }
 
 export function writeCustomer(firstName, lastName, birthDate, address, telefon, eMail, gender, bankDetails, subscription, subscriptionStart, trainerID, customerCardID, appointments) {
+    var customerData = fs.readFileSync('backend/data/customers.json', 'utf-8')
+    var oldCustomerArray = [];
+    try{
+        oldCustomerArray = JSON.parse(customerData);
+    }catch{
+        
+    }
+    let customerID = oldCustomerArray.length;
     let customer = new Customers(
         firstName,
         lastName, 
@@ -41,7 +52,8 @@ export function writeCustomer(firstName, lastName, birthDate, address, telefon, 
         subscriptionStart,
         trainerID, 
         customerCardID, 
-        appointments
+        appointments,
+        customerID
     )
     let customerArray = [];
     try {
@@ -68,24 +80,31 @@ export function writeCustomer(firstName, lastName, birthDate, address, telefon, 
 export function updatecustomer (customerID, firstName, lastName, birthDate, address, telefon, eMail, gender, bankDetails, trainerID, appointments){
     var data = fs.readFileSync('backend/data/customers.json', 'utf-8')
     var customerArray = JSON.parse(data);
-
+    var index = 0;
     try {
-        if (customerArray[customerID]) {
-            customerArray[customerID].firstName = firstName;
-            customerArray[customerID].lastName = lastName;
-            customerArray[customerID].birthDate = birthDate;
-            customerArray[customerID].address = address;
-            customerArray[customerID].telefon = telefon;
-            customerArray[customerID].eMail = eMail;            
-            customerArray[customerID].gender = gender;
-            customerArray[customerID].bankDetails = bankDetails;
-            customerArray[customerID].trainerID = trainerID;
-            customerArray[customerID].appointments = appointments;
-        }
 
+        for(index = 0; index < customerArray.length; index++){
+            if(customerArray[index].customerID == customerID){
+              customerArray[index].firstName = firstName;
+                customerArray[index].lastName = lastName;
+                customerArray[index].birthDate = birthDate;
+                customerArray[index].address = address;
+                customerArray[index].telefon = telefon;
+                customerArray[index].eMail = eMail;            
+                customerArray[index].gender = gender;
+                customerArray[index].bankDetails = bankDetails;
+                customerArray[index].trainerID = trainerID;
+                customerArray[index].appointments = appointments;
+                index = 0;
+                break;
+            }
+        }
+        if(index >= customerArray.length){
+            throw new Error("Kunde mit der ID nicht gefunden");
+        }
     } catch (e) {
         console.log("Fehler:", e.message);
-        return error; 
+        throw new Error(e.message);
     }
 
     let writedata = JSON.stringify(customerArray, null, 4);
@@ -97,16 +116,23 @@ export function aboManager (customerID, subscription, subscriptionStart){
 
     var customerData = fs.readFileSync('backend/data/customers.json', 'utf-8')
     var customerArray = JSON.parse(customerData);
-
+    var index = 0;
     try {
-        if (customerArray[customerID]) {
-            customerArray[customerID].subscription = subscription
-            customerArray[customerID].subscriptionStart = subscriptionStart
 
+        for(index = 0; index < customerArray.length; index ++){
+            if (customerArray[index].customerID == customerID) {
+                customerArray[index].subscription = subscription;
+                customerArray[index].subscriptionStart = subscriptionStart;
+                index = 0;
+                break;
+            }
+        }
+        if(index >= customerArray.length){
+            throw new Error("Kunde mit der ID nicht gefunden");
         }
     } catch (e) {
         console.log("Fehler:", e.message);
-        return error; 
+        throw new Error(e.message);
     }
 
     let writedata = JSON.stringify(customerArray, null, 4);
@@ -116,22 +142,25 @@ export function aboManager (customerID, subscription, subscriptionStart){
 
 export function deleteCustomer(customerID){
     var customerData = fs.readFileSync('backend/data/customers.json', 'utf-8')
-    var customerData = JSON.parse(customerData);
-
+    var customerArray = JSON.parse(customerData);
+    var index = 0;
     try {
-        if (customerData[customerID]) {
-            console.log(customerID)
-
-            customerData.splice(customerID, 1)
+        for(index = 0; index < customerArray.length; index++){
+            if(customerArray[index].customerID == customerID){
+                customerArray.splice(index, 1);
+                index = 0;
+                break;
+            };
+        };
+        if(index >= customerArray.length){
+            throw new Error("Kunden mit der ID nicht gefunden");
         }
     } catch (e) {
         console.log("Fehler:", e.message);
-        return error; 
+        throw new Error(e.message);
     }
-
     let writedata = JSON.stringify(customerData, null, 4);
     fs.writeFileSync('backend/data/customers.json', writedata);
-
 }
 
 
@@ -151,21 +180,22 @@ export function readAllTrainer(){
 export function readTrainer(trainerID){
     var trainerData = fs.readFileSync('backend/data/trainers.json', 'utf-8')
     var trainerArray = JSON.parse(trainerData);
-
+    var index = 0;
     try {
 
-        for(var i = 0; i < trainerArray.length; i++){
-            if(trainerArray[i].trainerID == trainerID){
-                trainerArray = trainerArray[i];
+        for(var index = 0; index < trainerArray.length; index++){
+            if(trainerArray[index].trainerID == trainerID){
+                trainerArray = trainerArray[index];
                 return trainerArray;
-            };
-        };
-
+            }
+        }
+        if(index >= customerArray.length){
+            throw new Error("Trainer mit der ID nicht gefunden");
+        }
     } catch (e) {
         console.log("Fehler:", e.message);
+        throw new Error(e.message);
     }
-
-    return error; 
 }
 
 export function writeTrainer(firstName, lastName, course, customerID) {
@@ -210,21 +240,25 @@ export function writeTrainer(firstName, lastName, course, customerID) {
 export function updateTrainer (trainerID, firstName, lastName, course, customerID){
     var trainerData = fs.readFileSync('backend/data/trainers.json', 'utf-8')
     var trainerArray = JSON.parse(trainerData);
+    var index = 0;
     try {
         
-        for(var i = 0; i < trainerArray.length; i++){
-            if(trainerArray[i].trainerID == trainerID){
-                trainerArray[i].firstName = firstName;
-                trainerArray[i].lastName = lastName;
-                trainerArray[i].course = course;
-                trainerArray[i].customerID = customerID;
+        for(index = 0; index < trainerArray.length; index++){
+            if(trainerArray[index].trainerID == trainerID){
+                trainerArray[index].firstName = firstName;
+                trainerArray[index].lastName = lastName;
+                trainerArray[index].course = course;
+                trainerArray[index].customerID = customerID;
+                index = 0;
                 break;
-            };
-        };
-
+            }
+        }
+        if(index >= trainerArray.length){
+            throw new Error("Trainer mit der ID nicht gefunden");
+        }
     } catch (e) {
         console.log("Fehler:", e.message);
-        return error; 
+        throw new Error(e.message);
     }
 
     let writedata = JSON.stringify(trainerArray, null, 4);
@@ -240,20 +274,20 @@ export function deleteTrainer(trainerID){
         for(index = 0; index < trainerArray.length; index++){
             if(trainerArray[index].trainerID == trainerID){
                 trainerArray.splice(index, 1);
-                let writedata = JSON.stringify(trainerArray, null, 4);
-                fs.writeFileSync('backend/data/trainers.json', writedata);
+                index = 0;
                 break;
             };
         };
         if(index >= trainerArray.length){
-            throw new Error("Trainer with that ID Not found");
+            throw new Error("Trainer mit der ID nicht gefunden");
         }
     } catch (e) {
         console.log("Fehler:", e.message);
         throw new Error(e.message);
     };
+    let writedata = JSON.stringify(trainerArray, null, 4);
+    fs.writeFileSync('backend/data/trainers.json', writedata);
 }
-
 
 export function deleteAllTrainer() {     
     fs.writeFileSync('backend/data/trainers.json', "");

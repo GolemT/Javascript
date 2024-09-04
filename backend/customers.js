@@ -1,5 +1,5 @@
 export default class Customers{
-    constructor (firstName, lastName, birthDate, address, telefon, eMail, gender, bankDetails, subscription, subscriptionStart, trainerID, customerCardID, appointments){
+    constructor (firstName, lastName, birthDate, address, telefon, eMail, gender, bankDetails, subscription, subscriptionStart, trainerID, customerCardID, appointments, customerID){
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
@@ -13,6 +13,7 @@ export default class Customers{
         this.trainerID = trainerID;
         this.customerCardID = customerCardID;
         this.appointments = appointments;
+        this.customerID = customerID;
     }
 }
 
