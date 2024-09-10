@@ -21,10 +21,22 @@ The Server will be started on http://localhost:3000
 **CREATE** Customer:
 
         http://localhost:3000/api/newcustomer
-
-        Params: firstName, lastName, birthDate, address,
-        telefon, eMail, gender, bankDetails, subscription,
-        subscriptionStart, trainerID, customerCardID, appointments
+        
+        {
+        "firstName": "",
+        "lastName": "",
+        "birthDate": "",
+        "address": "",
+        "telefon": "",
+        "eMail": "",
+        "gender": "",
+        "bankDetails": "",
+        "subscription": "",
+        "subscriptionStart": "",
+        "trainerID": "",
+        "customerCardID": "",
+        "appointments": ""
+        }
 **READ** all Customers:
 
         http://localhost:3000/api/allcustomer
@@ -39,14 +51,29 @@ The Server will be started on http://localhost:3000
 
         http://localhost:3000/api/updatecustomer/:id
 
-        Params: firstName, lastName, birthDate, address,
-        telefon, eMail, gender, bankDetails, subscription,
-        subscriptionStart, trainerID, customerCardID, appointments
+        {
+        "firstName": "",
+        "lastName": "",
+        "birthDate": "",
+        "address": "",
+        "telefon": "",
+        "eMail": "",
+        "gender": "",
+        "bankDetails": "",
+        "subscription": "",
+        "subscriptionStart": "",
+        "trainerID": "",
+        "customerCardID": "",
+        "appointments": ""
+        }
 **UPDATE** Customer Subscription:
 
         http://localhost:3000/api/abo/:id
 
-        Params: subscription, subscriptionStart
+        {
+        "subscription": "",
+        "subscriptionStart": ""
+        }
 **DELETE** all Customers:
 
         http://localhost:3000/api/deleteallcustomer
@@ -64,8 +91,12 @@ The Server will be started on http://localhost:3000
 
         http://localhost:3000/api/newtrainer
 
-        Params: firstName, lastName, course,
-        customerID, trainerID
+        {
+        "firstName": "",
+        "lastName": "",
+        "course": "",
+        "customerID": ""
+        }
 **READ** all Trainers:
 
         http://localhost:3000/api/alltrainer
@@ -80,7 +111,12 @@ The Server will be started on http://localhost:3000
 
         http://localhost:3000/api/updatetrainer/:id
 
-        Params: none
+        {
+        "firstName": "",
+        "lastName": "",
+        "course": "",
+        "customerID": ""
+        }
 **DELETE** all Trainers:
 
         http://localhost:3000/api/deletealltrainer
