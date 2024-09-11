@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+button {
+    width: 40vw;
+    height: 8vh;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#home-button {
+    margin-top: 10vh;
+    background-color: #3185FC;
+    color: #FAFAFA;
+}
+
+#home-button:hover {
+    background-color: #5a6268;
+}
+
+#login-status {
+    margin-top: 20px;
+    font-size: 14px;
+}
