@@ -1,5 +1,5 @@
 document.getElementById('receptionist-login').addEventListener('click', () => {
-    window.location.href = '../customerpage/customer.html';
+    window.location.href = '../overviewpage/overview.html';
 });
     
 document.getElementById('home-button').addEventListener('click', () => {

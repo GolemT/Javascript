@@ -1,0 +1,155 @@
+table{
+    font-size: 1.3rem;
+}
+  
+th{
+    padding: 10px;
+    text-align: right;
+}
+
+td {
+    padding: 10px;
+    text-align: left;
+}
+
+.table-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Zwei Spalten, gleiche Breite */
+    gap: 10%; /* Abstand zwischen den Spalten */
+  }
+  
+.main-table, .extra-table {
+    width: 100%; /* Tabellen nehmen die volle Breite der Spalten ein */
+    border-collapse: collapse;
+}
+
+.main{
+    align-items: center;
+    padding: 0 10vw;
+}
+
+.accordion {
+    background-color: #3E3E3E;
+    color: #FAFAFA;
+    padding: 15px;
+    width: 80vw;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #979797 ;
+    outline: none;
+    border-radius: 10px 10px 0 0;
+}
+
+.accordion-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.accordion-content span {
+    flex: 1;
+    text-align: center;
+}
+
+.name {
+    text-align: left;
+}
+
+.birth-date {
+    text-align: center;
+}
+
+.customer-id {
+    text-align: right;
+}
+
+.accordion:after {
+    content: '\25BC';
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.accordion.active:after {
+    transform: rotate(-180deg);
+}
+
+.panel {
+    border-radius:  0 0;
+    padding: 0 15px;
+    background-color: #2F2F2F;
+    color: #FFFFFF;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.panel p {
+    margin: 15px 0;
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+.accordion.active + .panel {
+    max-height: 500px;
+    padding: 15px;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.accordion::-webkit-scrollbar {
+    display: none;
+}
+
+.search-container {
+    position: relative;
+    width: 10vw;
+    margin-bottom: 10px;
+}
+
+.material-symbols-outlined {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 0,
+    'GRAD' 0,
+    'opsz' NaN
+}
+
+.panel .buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.panel button {
+    margin-left: 10px;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+}
+
+.panel .button-delete{
+    background-color: #DB3A34;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 10px 10px 10px 35px;
+    font-size: 0.8rem;
+    border-radius: 10px;
+    background-color: #999999;
+    border: none;
+    outline: none;
+}
+
+#searchInput::placeholder{
+    color: #1C1B1F;
+    opacity: 1;
+}
