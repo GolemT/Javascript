@@ -6,7 +6,7 @@ function generateAccordions(customers) {
   // Durch die Kunden iterieren und Akkordeons erstellen
   customers.forEach(customer => {
     // Akkordeon-Button erstellen
-    const accordion = document.createElement('button');
+    const accordion = document.createElement('div');
     accordion.classList.add('accordion');
 
     // Inneren Content-Container erstellen
