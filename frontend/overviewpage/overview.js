@@ -74,7 +74,7 @@ async function fetchAndGenerateAccordions() {
 
         // Eventlistener für den "bearbeiten"-Button
       panel.querySelector('.button-edit').addEventListener('click', () => {
-        window.location.href = '../ma_login/login.html';
+        window.location.href = '../edit_customer_page/edit.html?customerID=${customer.customerID}';
       });
     
         // Akkordeon und Panel zum Container hinzufügen
