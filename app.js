@@ -1,3 +1,4 @@
+import cors from 'cors';
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -16,6 +17,7 @@ app.listen(port, () => {
 });
 
 app.use(express.json()) 
+app.use(cors());
 
 //------------------------------------------customer------------------------------------------
 app.get('/api/allcustomer', (req, res) => {
