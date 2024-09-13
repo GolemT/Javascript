@@ -1,13 +1,11 @@
 export default class Customers{
-    constructor (firstName, lastName, birthDate, address, telefon, eMail, gender, bankDetails, subscription, subscriptionStart, trainerID, customerCardID, appointments, customerID){
+    constructor (firstName, lastName, birthDate, address, telefon, eMail, subscription, subscriptionStart, trainerID, customerCardID, appointments, customerID){
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.address = address;
         this.telefon = telefon;
         this.eMail = eMail;
-        this.gender = gender;
-        this.bankDetails = bankDetails;
         this.subscription = subscription;
         this.subscriptionStart = subscriptionStart;
         this.trainerID = trainerID;
