@@ -112,19 +112,6 @@ td {
     margin-bottom: 10px;
 }
 
-.material-symbols-outlined {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 2rem;
-    font-variation-settings:
-    'FILL' 0,
-    'wght' 0,
-    'GRAD' 0,
-    'opsz' NaN
-}
-
 .panel .buttons {
     display: flex;
     justify-content: flex-end;
@@ -154,4 +141,12 @@ td {
 #searchInput::placeholder{
     color: #1C1B1F;
     opacity: 1;
+}
+
+#lense {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
 }
