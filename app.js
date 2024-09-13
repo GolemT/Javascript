@@ -52,8 +52,6 @@ app.post('/api/newcustomer', (req, res) => {
         address,
         telefon,
         eMail,
-        gender,
-        bankDetails,
         subscription,
         subscriptionStart,
         trainerID,
@@ -62,7 +60,7 @@ app.post('/api/newcustomer', (req, res) => {
     } = req.body;
 
     try {
-        writeCustomer(firstName, lastName, birthDate, address, telefon, eMail, gender, bankDetails, subscription, subscriptionStart, trainerID, customerCardID, appointments);
+        writeCustomer(firstName, lastName, birthDate, address, telefon, eMail, subscription, subscriptionStart, trainerID, customerCardID, appointments);
         res.status(201).send({ message: 'Kunde erfolgreich erstellt' });
     } catch (error) {
         console.error("Fehler beim Erstellen des Kunden:", error);
@@ -79,14 +77,12 @@ app.put('/api/updatecustomer/:id', (req, res) => {
         address,
         telefon,
         eMail,
-        gender,
-        bankDetails,
         trainerID,
         appointments
     } = req.body;
 
     try {
-        updatecustomer(customerID, firstName, lastName, birthDate, address, telefon, eMail, gender, bankDetails, trainerID, appointments);
+        updatecustomer(customerID, firstName, lastName, birthDate, address, telefon, eMail, trainerID, appointments);
         res.status(200).send({ message: 'Kunde erfolgreich bearbeitet' });
     } catch (error) {
         if(error.message == "Kunde mit der ID nicht gefunden"){
@@ -122,7 +118,7 @@ app.delete('/api/deletecustomer/:id', (req, res) => {
 
     try {
         deleteCustomer(customerID)
-        res.status(201).send({ message: 'Kunden erfolgreich gelöscht' });
+        res.status(200).send({ message: 'Kunden erfolgreich gelöscht' });
     } catch (error) {
         console.error("Fehler beim löschen des Kunden:", error);
         if(error.message == "Kunden mit der ID nicht gefunden"){
@@ -136,7 +132,7 @@ app.delete('/api/deletecustomer/:id', (req, res) => {
 app.delete('/api/deleteallcustomer', (req, res) => {
     try {
         deleteAllCustomer()
-        res.status(201).send({ message: 'Kunden erfolgreich gelöscht' });
+        res.status(200).send({ message: 'Kunden erfolgreich gelöscht' });
     } catch (error) {
         console.error("Fehler beim löschen der Kunden:", error);
         res.status(500).send({ error: 'Fehler beim löschen der Kunden' });
@@ -216,7 +212,7 @@ app.delete('/api/deletetrainer/:id', (req, res) => {
 
     try {
         deleteTrainer(trainerID)
-        res.status(201).send({ message: 'Trainer erfolgreich gelöscht' });
+        res.status(200).send({ message: 'Trainer erfolgreich gelöscht' });
     } catch (error) {
         console.error("Fehler beim löschen des Trainers:", error);
         if(error.message == "Trainer mit der ID nicht gefunden"){
@@ -230,7 +226,7 @@ app.delete('/api/deletetrainer/:id', (req, res) => {
 app.delete('/api/deletealltrainer', (req, res) => {
     try {
         deleteAllTrainer()
-        res.status(201).send({ message: 'Trainer erfolgreich gelöscht' });
+        res.status(200).send({ message: 'Trainer erfolgreich gelöscht' });
     } catch (error) {
         console.error("Fehler beim löschen der Trainer:", error);
         res.status(500).send({ error: 'Fehler beim löschen der Trainer' });
