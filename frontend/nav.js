@@ -3,7 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentLocation = window.location.pathname;
 
     links.forEach(link => {
-        if (link.getAttribute('href') === currentLocation) {
+const linkPath = new URL(link.getAttribute('href'), window.location.origin).pathname;
+
+        if (linkPath === currentLocation) {
             link.classList.add('active');
         }
     });

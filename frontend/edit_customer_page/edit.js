@@ -48,8 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
         address: adress,
         telefon: document.getElementById('telefon').value.trim() || customer.telefon,
         eMail: document.getElementById('eMail').value.trim(),
-        gender: customer.gender,
-        bankDetails: customer.bankDetails,
         subscription: customer.subscription,
         subscriptionStart: customer.subscriptionStart,
         trainerID: customer.trainerID,
@@ -74,7 +72,8 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
         // Erfolgsmeldung oder Weiterleitung nach erfolgreicher Aktualisierung
         console.log('Kundendaten erfolgreich aktualisiert:', data);
-        // Weiterleiten oder Benachrichtigung zeigen
+
+        window.location.href = '../overviewpage/overview.html';
         })
         .catch(error => {
         console.error('Fehler beim Senden der Kundendaten:', error);
