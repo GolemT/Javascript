@@ -1,0 +1,36 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    padding-top: 60px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 0.5fr;
+    gap: 0px;
+    grid-template-areas:
+      "abos"
+      "disclosure";
+    height: 100vh;
+    width: 100%;
+}
+
+.main{
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    height: 100vh;
+}
+
+.abos{
+    grid-area: abos;
+}
+
+.disclosure{
+    grid-area: disclosure;
+}
