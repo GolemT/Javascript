@@ -31,7 +31,7 @@ export function readCustomer(customerID){
     }
 }
 
-export function writeCustomer(firstName, lastName, birthDate, address, telefon, eMail, gender, bankDetails, subscription, subscriptionStart, trainerID, customerCardID, appointments) {
+export function writeCustomer(firstName, lastName, birthDate, address, telefon, eMail, subscription, subscriptionStart, trainerID, customerCardID, appointments) {
     let customerID = uuidv4();
     let customer = new Customers(
         firstName,
@@ -40,8 +40,6 @@ export function writeCustomer(firstName, lastName, birthDate, address, telefon, 
         address, 
         telefon,
         eMail,
-        gender, 
-        bankDetails, 
         subscription,
         subscriptionStart,
         trainerID, 
@@ -71,7 +69,7 @@ export function writeCustomer(firstName, lastName, birthDate, address, telefon, 
     fs.writeFileSync('backend/data/customers.json', writedata);
 }
 
-export function updatecustomer (customerID, firstName, lastName, birthDate, address, telefon, eMail, gender, bankDetails, trainerID, appointments){
+export function updatecustomer (customerID, firstName, lastName, birthDate, address, telefon, eMail, trainerID, appointments){
     var customerData = fs.readFileSync('backend/data/customers.json', 'utf-8')
     var customerArray = JSON.parse(customerData);
     var index = 0;
@@ -84,9 +82,7 @@ export function updatecustomer (customerID, firstName, lastName, birthDate, addr
                 customerArray[index].birthDate = birthDate;
                 customerArray[index].address = address;
                 customerArray[index].telefon = telefon;
-                customerArray[index].eMail = eMail;            
-                customerArray[index].gender = gender;
-                customerArray[index].bankDetails = bankDetails;
+                customerArray[index].eMail = eMail;  
                 customerArray[index].trainerID = trainerID;
                 customerArray[index].appointments = appointments;
                 index = 0;
