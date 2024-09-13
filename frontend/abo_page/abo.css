@@ -1,36 +1,143 @@
 body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     text-align: center;
     height: 100vh;
-    padding-top: 60px;
+    margin: 0;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 0.5fr;
-    gap: 0px;
+    gap: 0;
     grid-template-areas:
       "abos"
       "disclosure";
-    height: 100vh;
     width: 100%;
 }
 
-.main{
+h1{
+    color: #FFFFFF;
+    text-decoration: underline;
+}
+
+h3{
+    color: #FFFFFF;
+}
+
+#attention{
+    font-weight: bolder;
+}
+
+.main {
     grid-area: main;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 15px;
-    height: 100vh;
+    height: 100%;
 }
 
-.abos{
+.abos {
     grid-area: abos;
 }
 
-.disclosure{
+.disclosure {
     grid-area: disclosure;
+    color: #FFFFFF;
+    text-align: left;
+}
+
+#container {
+    height: 60vh;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#galleryContainer { 
+    height: 100%;
+    width: 80%;
+    background: transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    position: relative;
+}
+
+#galleryContainer ul { 
+    text-align: left;
+}
+
+#galleryContainer .price { 
+    font-weight: bold;
+}
+
+#galleryView {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#mainView {
+    height: 80%;
+    width: 70%;  
+    border-radius: 5px;
+    background-color: #999999;
+    margin-left: 10px;
+    margin-right: 10px;
+    z-index: 1;
+    transition: all 1s;
+    box-shadow: -20px 0 15px rgba(0, 0, 0, 0.5), 20px 0 15px rgba(0, 0, 0, 0.5);
+}
+
+#mainView:hover {
+    transform: scale(1.2);
+    transition: all 1s;   
+}
+
+#leftView {
+    height: 60%;
+    width: 50%;
+    opacity: 0.5;
+    border-radius: 5px;
+    background-color: #3E3E3E;
+}
+
+#leftView:hover {
+    opacity: 1;
+    transition: all 1s;
+}
+
+#rightView {
+    height: 60%;
+    width: 50%;
+    opacity: 0.5;
+    border-radius: 5px;
+    background-color: #3E3E3E;
+}
+
+#rightView:hover {
+    opacity: 1;
+    transition: all 1s;
+}
+
+.navBtns {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: none;
+    position: absolute;
+    opacity: 0.8;
+    background-color: transparent;
+    cursor: pointer;
+    color: white;
+}
+
+#navLeft {
+    left: 50px;
+}
+
+#navRight {
+    right: 50px;
 }

@@ -3,30 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mitarbeiter Login</title>
+    <title>Kundenübersicht</title>
+    <link rel="icon" href="../assets/favicon_big.ico" type="image/x-icon">
+    <link rel="icon" href="../assets/favicon_smal.ico" type="image/x-icon">
+    <link rel="icon" href="../assets/favicon_big.png" type="image/png">
+    <link rel="icon" href="../assets/favicon_smal.png" type="image/png">
     <link rel="stylesheet" href="abo.css">
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
 </head>
 <body>
     <div class="container">
         <div class="logo">
-            <img src="" alt="logo">
+            <img src="../assets/NexusFit.png" alt="logo">
         </div>
         <div class="header">
+            <ul>
+                <li><a href="../abo_page/abo.html" class="nav-link">Abo</a></li>
+                <li><a href="" class="nav-link">Geräte</a></li>
+                <li><a href="" class="nav-link">Probetraining</a></li>
+                <li><a href="../overviewpage/overview.html" class="nav-link">Mitglieder</a></li>
+            </ul>
         </div>
-        <div class="user"></div>
+        <div class="user">
+        </div>
         <div class="main">
             <div class="abos">
                 <h3>
-                    <span>Beachte:</span>
+                    <span id="attention">Beachte:</span>
                     Abos können nur im Fitnex selbst abgeschlossen werden. So lernst du uns gleich persönlich kennen. Wir freuen uns auf dich.
                 </h3>
+                <h1>Unsere Abomodelle</h1>
+                <div id="container">
+                    <div id="galleryView">
+                      <div id="galleryContainer">
+                         <div id="leftView"></div>
+                         <button id="navLeft" class="navBtns"><span class="material-symbols-outlined">chevron_left</span></button>
+                            <div id="mainView"></div>
+                         <div id="rightView"></div>
+                         <button id="navRight" class="navBtns"><span class="material-symbols-outlined">chevron_right</span></button>
+                      </div>
+                    </div>
             </div>
             <div class="disclosure">
-
+                <p>Kleingedrucktes</p>
             </div>
         </div>
     </div>
-    <script src="abo.css"></script>
+    <script src="abo.js"></script>
+    <script src="../nav.js"></script>
 </body>
 </html>
