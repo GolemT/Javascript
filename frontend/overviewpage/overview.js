@@ -56,9 +56,27 @@ function generateAccordions(customers) {
         </table>
       </div>
       <span class='buttons'>
+      <div class="buttons-left">
+        <button type="button" id="card-button" class="card-button">Kundenkarte</button>
+        <button type="button" id="trainer-button" class="trainer-button">Trainer</button>
+        <button type="button" id="tarif-button" class="tarif-button" href="#" onclick="show('popup')">Tarif</button>
+      </div>
+      <div class="buttons-right">
         <button class='button-edit'>bearbeiten</button>
         <button class='button-delete'>löschen</button>
+      </div>
       </span>
+      <div class="popup" id="popup">
+        <h2>M-Nr.: ${customer.customerID}</h2>
+        <label for="tarif">Tarif:</label>
+        <select id="tarif" name="tarif">
+          <option value="Klassisch">Klassisch</option>
+          <option value="Gold">Gold</option>
+          <option value="Premium">Premium</option>
+          <option value="auswählen" selected style="display:none">Tarif auswählen</option>
+        </select>
+        <a href="#" onclick="hide('popup')">Close</a>
+</div>
     `;
 
     // Eventlistener für Akkordeon zum Öffnen und Schließen
@@ -94,3 +112,32 @@ async function fetchAndGenerateAccordions() {
 
 // Funktion aufrufen, um die Akkordeons zu generieren
 fetchAndGenerateAccordions();
+
+$ = function(id) {
+  return document.getElementById(id);
+}
+
+var show = function(id) {
+	$(id).style.display ='block';
+}
+var hide = function(id) {
+	$(id).style.display ='none';
+}
+
+let customerSubscription = "${customer.subscription}"; // Beispiel: "Gold"
+
+    let selectElement = document.getElementById("tarif");
+    let foundMatch = false;
+
+    // Überprüfen, ob eine Option mit der Variable übereinstimmt
+    selectElement.querySelectorAll('option').forEach(option => {
+      if (option.value === customerSubscription) {
+        option.selected = true;
+        foundMatch = true;
+      }
+    });
+
+    // Wenn keine Übereinstimmung gefunden wurde, versteckte Option auswählen
+    if (!foundMatch) {
+      selectElement.querySelector('option[value="auswählen"]').selected = true;
+    }

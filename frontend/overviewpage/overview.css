@@ -114,7 +114,7 @@ td {
 
 .panel .buttons {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     margin-top: 10px;
 }
 
@@ -122,11 +122,65 @@ td {
     margin-left: 10px;
     padding: 1rem 2rem;
     font-size: 1rem;
+    font-weight: bold;
 }
 
 .panel .button-delete{
     background-color: #DB3A34;
 }
+
+.buttons-left{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    padding: 0;
+    width: 40vw;
+    left: 40vw;
+    margin-left: -150px;
+    height: 30vh;
+    top: 50%;
+    margin-top: -100px;
+    background: #2F2F2F;
+
+  }
+
+  .popup h2{
+    background-color: #3E3E3E;
+    border-bottom: 2px solid #979797;
+    margin-top: 0;
+    padding: 3%;
+    border-radius: 10px;
+    box-shadow: 0 0 15 black;
+  }
+  
+  #popup:after {
+    position: fixed;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: -2;
+  }
+  
+  #popup:before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #2F2F2F;
+    z-index: -1;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
 
 #searchInput {
     width: 100%;
