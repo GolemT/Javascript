@@ -33,9 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("navLeft").addEventListener("click", scrollLeft);
     
     document.addEventListener('keyup', function(e) {
-        if (e.keyCode === 37) { // Pfeil nach links
+        if (e.key === "ArrowLeft") { // Pfeil nach links
             scrollLeft();
-        } else if (e.keyCode === 39) { // Pfeil nach rechts
+        } else if (e.key === "ArrowRight") { // Pfeil nach rechts
             scrollRight();
         }
     });
