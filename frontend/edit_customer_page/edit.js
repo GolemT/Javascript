@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
         eMail: document.getElementById('eMail').value.trim(),
         subscription: customer.subscription,
         subscriptionStart: customer.subscriptionStart,
-        trainerID: customer.trainerID,
+        trainer: customer.trainer,
         customerCardID: customer.customerCardID,
         appointments: customer.appointments
         };

@@ -31,7 +31,7 @@ export function readCustomer(customerID){
     }
 }
 
-export function writeCustomer(firstName, lastName, birthDate, address, telefon, eMail, subscription, subscriptionStart, trainerID, customerCardID, appointments) {
+export function writeCustomer(firstName, lastName, birthDate, address, telefon, eMail, subscription, subscriptionStart, trainer, customerCardID, appointments) {
     let customerID = uuidv4();
     let customer = new Customers(
         firstName,
@@ -42,7 +42,7 @@ export function writeCustomer(firstName, lastName, birthDate, address, telefon, 
         eMail,
         subscription,
         subscriptionStart,
-        trainerID, 
+        trainer, 
         customerCardID, 
         appointments,
         customerID
@@ -69,7 +69,7 @@ export function writeCustomer(firstName, lastName, birthDate, address, telefon, 
     fs.writeFileSync('backend/data/customers.json', writedata);
 }
 
-export function updatecustomer (customerID, firstName, lastName, birthDate, address, telefon, eMail, trainerID, appointments){
+export function updatecustomer (customerID, firstName, lastName, birthDate, address, telefon, eMail, trainer, appointments){
     var customerData = fs.readFileSync('backend/data/customers.json', 'utf-8')
     var customerArray = JSON.parse(customerData);
     var index = 0;
@@ -83,7 +83,7 @@ export function updatecustomer (customerID, firstName, lastName, birthDate, addr
                 customerArray[index].address = address;
                 customerArray[index].telefon = telefon;
                 customerArray[index].eMail = eMail;  
-                customerArray[index].trainerID = trainerID;
+                customerArray[index].trainer = trainer;
                 customerArray[index].appointments = appointments;
                 index = 0;
                 break;
@@ -113,6 +113,59 @@ export function aboManager (customerID, subscription, subscriptionStart){
             if (customerArray[index].customerID == customerID) {
                 customerArray[index].subscription = subscription;
                 customerArray[index].subscriptionStart = subscriptionStart;
+                index = 0;
+                break;
+            }
+        }
+        if(index >= customerArray.length){
+            throw new Error("Kunde mit der ID nicht gefunden");
+        }
+    } catch (e) {
+        console.log("Fehler:", e.message);
+        throw new Error(e.message);
+    }
+
+    let writedata = JSON.stringify(customerArray, null, 4);
+    fs.writeFileSync('backend/data/customers.json', writedata);
+
+}
+
+export function cardManager (customerID, customerCardID){
+    var customerData = fs.readFileSync('backend/data/customers.json', 'utf-8')
+    var customerArray = JSON.parse(customerData);
+    var index = 0;
+    try {
+
+        for(index = 0; index < customerArray.length; index ++){
+            if (customerArray[index].customerID == customerID) {
+                customerArray[index].customerCardID = customerCardID;
+                index = 0;
+                break;
+            }
+        }
+        if(index >= customerArray.length){
+            throw new Error("Kunde mit der ID nicht gefunden");
+        }
+    } catch (e) {
+        console.log("Fehler:", e.message);
+        throw new Error(e.message);
+    }
+
+    let writedata = JSON.stringify(customerArray, null, 4);
+    fs.writeFileSync('backend/data/customers.json', writedata);
+
+}
+
+export function customerTrainerManager (customerID, trainer){
+
+    var customerData = fs.readFileSync('backend/data/customers.json', 'utf-8')
+    var customerArray = JSON.parse(customerData);
+    var index = 0;
+    try {
+
+        for(index = 0; index < customerArray.length; index ++){
+            if (customerArray[index].customerID == customerID) {
+                customerArray[index].trainer = trainer;
                 index = 0;
                 break;
             }

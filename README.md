@@ -31,7 +31,7 @@ The Server will be started on http://localhost:3000
         "eMail": "",
         "subscription": "",
         "subscriptionStart": "",
-        "trainerID": "",
+        "trainer": "",
         "customerCardID": "",
         "appointments": ""
         }
@@ -58,7 +58,7 @@ The Server will be started on http://localhost:3000
         "eMail": "",
         "subscription": "",
         "subscriptionStart": "",
-        "trainerID": "",
+        "trainer": "",
         "customerCardID": "",
         "appointments": ""
         }
@@ -69,6 +69,20 @@ The Server will be started on http://localhost:3000
         {
         "subscription": "",
         "subscriptionStart": ""
+        }
+**UPDATE** Customer CustomerCard:
+
+        http://localhost:3000/api/card/:id
+
+        {
+        "customerCardID": "",
+        }
+**UPDATE** Customer Customer Personal Trainer:
+
+        http://localhost:3000/api/customertrainer/:id
+
+        {
+        "trainer": "",
         }
 **DELETE** all Customers:
 
