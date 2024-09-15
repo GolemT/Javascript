@@ -41,6 +41,9 @@ function getPanelHTMLFromTemplate(customer) {
     .replace('E_MAIL', customer.eMail)
     .replace('SUBSCRIPTION', customer.subscription)
     .replace('SUBSCRIPTION_START', customer.subscriptionStart)
+    .replace('C_ID', customer.customerID)
+    .replace('C_ID', customer.customerID)
+    .replace('C_ID', customer.customerID)
     .replace('C_ID', customer.customerID);
 }
 
@@ -63,6 +66,11 @@ function createPanel(customer) {
     }
   }
 
+  // Eventlistener für den "löschen"-Button
+panel.querySelector('#delete').addEventListener('click', () => {
+  deleteCustomer(customer.customerID); // Aufruf der Löschfunktion
+});
+
   return panel;
 }
 
@@ -73,6 +81,7 @@ function show(id) {
 
   // Funktion aufrufen, um den Tarif-Button zu initialisieren
   saveTariff();
+  deleteCustomer();
 }
 
 function addAccordionEventListener(accordion, panel) {
@@ -210,3 +219,42 @@ const createButton = document.querySelector('#create-button');
 createButton.addEventListener('click', () => {
   window.location.href = '../create_customer_page/create.html';
 })
+
+// Funktion zum Löschen des Kunden
+async function deleteCustomer() {
+  const deleteButton = document.querySelector('#delete');
+
+  deleteButton.addEventListener('click', async () => {
+    // Überprüfen, ob ein aktives Akkordeon vorhanden ist
+    const activeAccordion = document.querySelector('.accordion.active');
+    if (!activeAccordion) {
+      console.error('Kein aktives Akkordeon vorhanden.');
+      return;
+    }
+
+    // Hole die aktuelle Kunden-ID aus dem aktiven Akkordeon
+    const customerIDElement = activeAccordion.querySelector('.customer-id');
+    if (!customerIDElement) {
+      console.error('Kunden-ID konnte nicht gefunden werden.');
+      return;
+    }
+    
+    const customerID = customerIDElement.innerText.split(': ')[1]; // Extrahiere die ID
+
+    try {
+      const response = await fetch(`http://localhost:3000/api/deletecustomer/${customerID}`, {
+        method: 'DELETE', // Verwende die DELETE-Methode
+      });
+      
+      if (response.ok) {
+        console.log(`Kunde mit ID ${customerID} wurde erfolgreich gelöscht.`);
+        // Seite neu laden, um die Änderungen anzuzeigen
+        window.location.reload();
+      } else {
+        console.error('Fehler beim Löschen des Kunden:', await response.text());
+      }
+    } catch (error) {
+      console.error('Fehler bei der Löschanfrage:', error);
+    }
+  })
+  }

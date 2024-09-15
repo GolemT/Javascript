@@ -37,7 +37,7 @@
                     <span class="material-symbols-outlined" id="lense">search</span>
                     <input type="text" id="searchInput" placeholder="Nach Kunden suchen...">
                 </div>
-                <button type="button" id="create-button">Kunde anlegen</button>
+                <button type="button" id="create-button">Kunden anlegen</button>
             </div>
             <div id="accordion-container"></div>
         </div>
@@ -46,51 +46,61 @@
     <script src="../nav.js"></script>
     
 <!-- Panel Inhalt -->
-<template id="customer-panel-template">
-    <div class="table-container">
-      <table class="main-table">
-        <tr><th>Name:</th><td>FIRST_NAME LAST_NAME</td></tr>
-        <tr><th>Geb.:</th><td>BIRTH_DATE</td></tr>
-        <tr><th>Adresse:</th><td>ADDRESS</td></tr>
-        <tr><th>Telefon:</th><td>TELEFON</td></tr>
-        <tr><th>E-Mail:</th><td>E_MAIL</td></tr>
-      </table>
+    <template id="customer-panel-template">
+        <div class="table-container">
+            <table class="main-table">
+                <tr><th>Name:</th><td>FIRST_NAME LAST_NAME</td></tr>
+                <tr><th>Geb.:</th><td>BIRTH_DATE</td></tr>
+                <tr><th>Adresse:</th><td>ADDRESS</td></tr>
+                <tr><th>Telefon:</th><td>TELEFON</td></tr>
+                <tr><th>E-Mail:</th><td>E_MAIL</td></tr>
+            </table>
   
-      <table class="extra-table">
-        <tr><th>Abomodell:</th><td>SUBSCRIPTION</td></tr>
-        <tr><th>Beitrag:</th><td>19.99</td></tr>
-        <tr><th>Abo-Start:</th><td>SUBSCRIPTION_START</td></tr>
-      </table>
-    </div>
-    <span class='buttons'>
-      <div class="buttons-left">
-        <button class="button" href="#" onclick="show('popup_card')">Kundenkarte</button>
-        <button class="button" href="#" onclick="show('popup_trainer')">Trainer</button>
-        <button class="button" href="#" onclick="show('popup_tariff')">Tarif</button>
-      </div>
-      <div class="buttons-right">
-      <button class='button-edit'>bearbeiten</button>
-      <button class='button-delete'>löschen</button>
-    </div>
-    </span>
+            <table class="extra-table">
+                <tr><th>Abomodell:</th><td>SUBSCRIPTION</td></tr>
+                <tr><th>Beitrag:</th><td>19.99</td></tr>
+                <tr><th>Abo-Start:</th><td>SUBSCRIPTION_START</td></tr>
+            </table>
+        </div>
+        <span class='buttons'>
+            <div class="buttons-left">
+                <button class="button" href="#" onclick="show('popup_card')">Kundenkarte</button>
+                <button class="button" href="#" onclick="show('popup_trainer')">Trainer</button>
+                <button class="button" href="#" onclick="show('popup_tariff')">Tarif</button>
+            </div>
+            <div class="buttons-right">
+                <button class='button-edit'>bearbeiten</button>
+                <button class='button-delete' href="#" onclick="show('popup_delete')">Löschen</button>
+            </div>
+        </span>
 
-    <!--Tarifkarte-->
-    <div class="popup" id="popup_tariff">
-        <h2>M-Nr.: C_ID</h2>
-        <h1>Tarif:</h1>
-        <div class="custom-select">
-        <select name="tariff" id="tariff">
-            <option value="Klassisch">Klassisch</option>
-            <option value="Gold">Gold</option>
-            <option value="Platin">Platin</option>
-            <option value="" style="display: none;">Tarif wählen</option>
-        </select>
-    </div>
-    <div class="buttons">
-    <button class="button-safe">Speichern</button>
-    <button class="button-back" onclick="hide('popup_tariff')">Abbrechen</button>
-</div>
-      </div>
-  </template>  
+        <!--Tarifkarte-->
+        <div class="popup" id="popup_tariff">
+            <h2>M-Nr.: C_ID</h2>
+            <h1>Tarif:</h1>
+            <div class="custom-select">
+                <select name="tariff" id="tariff">
+                    <option value="Klassisch">Klassisch</option>
+                    <option value="Gold">Gold</option>
+                    <option value="Platin">Platin</option>
+                    <option value="" style="display: none;">Tarif wählen</option>
+                </select>
+            </div>
+            <div class="buttons">
+                <button class="button-safe">Speichern</button>
+                <button class="button-negative" onclick="hide('popup_tariff')">Abbrechen</button>
+            </div>
+        </div>
+
+        <!--Löschen Popup-->
+        <div class="popup" id="popup_delete">
+            <h2>M-Nr.: C_ID</h2>
+            <h1>Möchten sie den Kunden wirklich löschen?</h1>
+            <div class="buttons">
+                <button class="button-negative" id="delete">Löschen</button>
+                <button class="button-neutral" onclick="hide('popup_delete')">Abbrechen</button>
+            </div>
+        </div>
+    </template>  
 </body>
 </html>

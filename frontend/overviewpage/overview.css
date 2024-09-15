@@ -33,7 +33,6 @@ td {
     background-color: #3E3E3E;
     color: #FAFAFA;
     padding: 15px;
-    width: 80vw;
     font-size: 1.2rem;
     cursor: pointer;
     display: flex;
@@ -122,7 +121,6 @@ td {
     margin-left: 10px;
     padding: 1rem 2rem;
     font-size: 1rem;
-    font-weight: bold;
     border-radius: 5px;
 }
 
@@ -178,8 +176,12 @@ td {
     outline: none;
   }
 
-  .button-back{
+  .button-negative{
     background-color: #DB3A34;
+  }
+
+  .button-neutral{
+    background-color: #999999;
   }
 
   .button-safe{
@@ -217,6 +219,35 @@ td {
     border-radius: 10px;
   }
 
+  /*Popup Löschen*/
+  
+  #popup_delete:after {
+    position: fixed;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: -2;
+  }
+  
+  #popup_delete:before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #2F2F2F;
+    z-index: -1;
+    border-radius: 10px;
+  }
+
+  #popup_delete .buttons{
+    margin: 10% 5% 0 5%;
+  }
+
   /*searchbar*/
 #searchInput {
     width: 100%;
@@ -242,5 +273,6 @@ td {
 }
 
 #create-button{
-    min-width: 10%;
+    min-width: 15%;
+    font-size: 1rem;
   }
