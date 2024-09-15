@@ -113,6 +113,19 @@
         <h2>M-Nr.: C_ID</h2>
         <h1>Tarif:</h1>
         <div class="custom-select">
+            <select name="tariff" id="tariff">
+                <option value="Klassisch">Klassisch</option>
+                <option value="Gold">Gold</option>
+                <option value="Platin">Platin</option>
+                <option value="" style="display: none;">Tarif wählen</option>
+            </select>
+        </div>
+        <div class="buttons">
+            <button class="button-safe">Speichern</button>
+            <button class="button-back" onclick="hide('popup_tariff')">Abbrechen</button>
+        </div>
+    </div>
+  </template>  
                 <select name="tariff" id="tariff">
                     <option value="Klassisch">Klassisch</option>
                     <option value="Gold">Gold</option>
