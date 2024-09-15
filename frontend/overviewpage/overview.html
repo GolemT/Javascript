@@ -71,9 +71,12 @@
       <div class="buttons-right">
         <button class='button-edit'>bearbeiten</button>
         <button class='button-delete'>löschen</button>
+        <button class='button-edit'>bearbeiten</button>
+        <button class='button-delete'>löschen</button>
     </div>
     </span>
 
+    <!--Tarif Popup-->
     <!--Tarif Popup-->
     <div class="popup" id="popup_tariff">
         <h2>M-Nr.: C_ID</h2>
@@ -111,8 +114,54 @@
     <!--Trainer Popup-->
     <div class="popup" id="popup_trainer">
         <h2>M-Nr.: C_ID</h2>
+        <h1>Tarif</h1>
+        <div class="custom-select">
+            <select name="tariff" id="tariff">
+                <option value="Klassisch">Klassisch</option>
+                <option value="Gold">Gold</option>
+                <option value="Platin">Platin</option>
+                <option value="" style="display: none;">Tarif wählen</option>
+            </select>
+        </div>
+        <div class="buttons">
+            <button class="button-safe">Speichern</button>
+            <button class="button-back" onclick="hide('popup_tariff')">Abbrechen</button>
+        </div>
+    </div>
+    <!--Kundenkarte Popup-->
+    <div class="popup" id="popup_card">
+        <h2>M-Nr.: C_ID</h2>
+        <h1>Kundenkarte</h1>
+        <div class="custom-select">
+            <select name="customer_card" id="customer_card">
+                <option value="Klassisch">Klassisch</option>
+                <option value="Gold">Gold</option>
+                <option value="Platin">Platin</option>
+                <option value="" style="display: none;">Tarif wählen</option>
+            </select>
+        </div>
+        <div class="buttons">
+            <button class="button-update">Speichern</button>
+            <button class="button-back" onclick="hide('popup_card')">Abbrechen</button>
+        </div>
+    </div>
+    <!--Trainer Popup-->
+    <div class="popup" id="popup_trainer">
+        <h2>M-Nr.: C_ID</h2>
         <h1>Tarif:</h1>
         <div class="custom-select">
+            <select name="tariff" id="tariff">
+                <option value="Klassisch">Klassisch</option>
+                <option value="Gold">Gold</option>
+                <option value="Platin">Platin</option>
+                <option value="" style="display: none;">Tarif wählen</option>
+            </select>
+        </div>
+        <div class="buttons">
+            <button class="button-safe">Speichern</button>
+            <button class="button-back" onclick="hide('popup_tariff')">Abbrechen</button>
+        </div>
+    </div>
             <select name="tariff" id="tariff">
                 <option value="Klassisch">Klassisch</option>
                 <option value="Gold">Gold</option>
