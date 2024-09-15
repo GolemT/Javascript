@@ -204,3 +204,9 @@ function $(id) {
 function hide(id) {
   $(id).style.display = 'none';
 }
+
+const createButton = document.querySelector('#create-button');
+
+createButton.addEventListener('click', () => {
+  window.location.href = '../create_customer_page/create.html';
+})

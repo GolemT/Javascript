@@ -49,5 +49,19 @@
             "2024-04-03"
         ],
         "customerID": "random-generated-uuid-3"
+    },
+    {
+        "firstName": "Test",
+        "lastName": "Test",
+        "birthDate": "3232-03-11",
+        "address": "Gurdularweg 2, 49287 Bumsplotten",
+        "telefon": "",
+        "eMail": "test@test.test",
+        "subscription": "",
+        "subscriptionStart": "",
+        "trainerID": "",
+        "customerCardID": "",
+        "appointments": "",
+        "customerID": "95ab9fd3-4f56-4ddf-8a8a-0888716c5f30"
     }
 ]
