@@ -115,7 +115,7 @@ td {
 .panel .buttons {
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
+    margin: 10px;
 }
 
 .panel button {
@@ -123,15 +123,11 @@ td {
     padding: 1rem 2rem;
     font-size: 1rem;
     font-weight: bold;
+    border-radius: 5px;
 }
 
 .panel .button-delete{
     background-color: #DB3A34;
-}
-
-.buttons-left{
-    display: flex;
-    justify-content: flex-start;
 }
 
 .popup {
@@ -142,22 +138,57 @@ td {
     left: 40vw;
     margin-left: -150px;
     height: 30vh;
-    top: 50%;
+    top: 30vh;
     margin-top: -100px;
-    background: #2F2F2F;
-
+    background: #FFF;
+    text-align: center;
+    border-radius: 10px;
   }
 
   .popup h2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #3E3E3E;
-    border-bottom: 2px solid #979797;
-    margin-top: 0;
-    padding: 3%;
+    border-bottom: 3px solid #979797;
+    margin: 0;
+    height: 20%;
     border-radius: 10px;
-    box-shadow: 0 0 15 black;
+  }
+
+  .custom-select {
+    min-width: 350px;
   }
   
-  #popup:after {
+  .custom-select select {
+    appearance: none;
+    width: 50%;
+    font-size: 1.15rem;
+    padding: 0.675em 6em 0.675em 1em;
+    background-color: #1C1C1C;
+    border: none;
+    border-radius: 0.25rem;
+    color: #FFFFFF;
+    cursor: pointer;
+    margin-bottom: 2%;
+  }
+
+  .custom-select select:focus{
+    border: none;
+    outline: none;
+  }
+
+  .button-back{
+    background-color: #DB3A34;
+  }
+
+  .button-safe{
+    background-color: #20BF55;
+  }
+
+/*Popup Tarif*/
+  
+  #popup_tariff:after {
     position: fixed;
     content: "";
     top: 0;
@@ -168,7 +199,7 @@ td {
     z-index: -2;
   }
   
-  #popup:before {
+  #popup_tariff:before {
     position: absolute;
     content: "";
     top: 0;
@@ -178,10 +209,9 @@ td {
     background: #2F2F2F;
     z-index: -1;
     border-radius: 10px;
-    text-align: center;
   }
-  
 
+  /*searchbar*/
 #searchInput {
     width: 100%;
     padding: 10px 10px 10px 35px;

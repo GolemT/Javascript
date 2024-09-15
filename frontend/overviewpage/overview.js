@@ -1,3 +1,103 @@
+// Funktion zum Erstellen eines Akkordeons
+function createAccordion(customer) {
+  const accordion = document.createElement('div');
+  accordion.classList.add('accordion');
+
+  const content = document.createElement('div');
+  content.classList.add('accordion-content');
+
+  const nameSpan = document.createElement('span');
+  nameSpan.classList.add('name');
+  nameSpan.innerText = `${customer.firstName} ${customer.lastName}`;
+
+  const birthDateSpan = document.createElement('span');
+  birthDateSpan.classList.add('birth-date');
+  birthDateSpan.innerText = `Geb.: ${customer.birthDate}`;
+
+  const customerIdSpan = document.createElement('span');
+  customerIdSpan.classList.add('customer-id');
+  customerIdSpan.innerText = `M-Nr.: ${customer.customerID}`;
+
+  content.appendChild(nameSpan);
+  content.appendChild(birthDateSpan);
+  content.appendChild(customerIdSpan);
+
+  accordion.appendChild(content);
+
+  return accordion;
+}
+
+// Funktion zum Erstellen des Panel-HTMLs aus dem Template-Tag
+function getPanelHTMLFromTemplate(customer) {
+  const template = document.getElementById('customer-panel-template').innerHTML;
+
+  // Platzhalter mit Kundendaten ersetzen
+  return template
+    .replace('FIRST_NAME', customer.firstName)
+    .replace('LAST_NAME', customer.lastName)
+    .replace('BIRTH_DATE', customer.birthDate)
+    .replace('ADDRESS', customer.address)
+    .replace('TELEFON', customer.telefon)
+    .replace('E_MAIL', customer.eMail)
+    .replace('SUBSCRIPTION', customer.subscription)
+    .replace('SUBSCRIPTION_START', customer.subscriptionStart)
+    .replace('C_ID', customer.customerID);
+}
+
+// Funktion zum Erstellen des Panels
+function createPanel(customer) {
+  const panel = document.createElement('div');
+  panel.classList.add('panel');
+  panel.innerHTML = getPanelHTMLFromTemplate(customer);
+
+  const select = panel.querySelector('#tariff');
+  const options = select.options;
+
+  // Wenn der Kunde ein Abo hat, diesen vorauswählen, sonst "Tarif wählen"
+  for ( let i = 0; i < options.length; i++) {
+    if (options[i].value === customer.subscription) {
+      options[i].selected = true;
+      break;
+    } else {
+      options[3].selected = true; // "Tarif wählen"
+    }
+  }
+
+  return panel;
+}
+
+// Funktion zum Anzeigen und Einstellen des aktuellen Tarifs
+function show(id) {
+  const popup = $(id);
+  popup.style.display = 'block';
+
+  // Funktion aufrufen, um den Tarif-Button zu initialisieren
+  saveTariff();
+}
+
+function addAccordionEventListener(accordion, panel) {
+  accordion.addEventListener('click', () => {
+    // Prüfen, ob das Akkordeon bereits aktiv ist
+    const isActive = accordion.classList.contains('active');
+
+    // Alle anderen Akkordeons deaktivieren
+    const allAccordions = document.querySelectorAll('.accordion');
+    allAccordions.forEach(acc => acc.classList.remove('active'));
+
+    // Alle Panels schließen
+    const allPanels = document.querySelectorAll('.panel');
+    allPanels.forEach(p => p.style.maxHeight = null);
+
+    // Wenn es nicht aktiv ist, setze es auf aktiv
+    if (!isActive) {
+      accordion.classList.add('active');
+      panel.style.maxHeight = panel.scrollHeight + "px"; // Panel öffnen
+    }
+  });
+}
+
+let customerDataMap = {};
+
 // Funktion, um die Akkordeons mit den abgerufenen Kundendaten zu generieren
 function generateAccordions(customers) {
   const accordionContainer = document.getElementById('accordion-container');
@@ -5,85 +105,13 @@ function generateAccordions(customers) {
 
   // Durch die Kunden iterieren und Akkordeons erstellen
   customers.forEach(customer => {
-    // Akkordeon-Button erstellen
-    const accordion = document.createElement('div');
-    accordion.classList.add('accordion');
+    customerDataMap[customer.customerID] = customer;
 
-    // Inneren Content-Container erstellen
-    const content = document.createElement('div');
-    content.classList.add('accordion-content');
+    const accordion = createAccordion(customer);
+    const panel = createPanel(customer);
 
-    // Name
-    const nameSpan = document.createElement('span');
-    nameSpan.classList.add('name');
-    nameSpan.innerText = `${customer.firstName} ${customer.lastName}`;
-
-    // Geburtsdatum
-    const birthDateSpan = document.createElement('span');
-    birthDateSpan.classList.add('birth-date');
-    birthDateSpan.innerText = `Geb.: ${customer.birthDate}`;
-
-    // Kundennummer
-    const customerIdSpan = document.createElement('span');
-    customerIdSpan.classList.add('customer-id');
-    customerIdSpan.innerText = `M-Nr.: ${customer.customerID}`;
-
-    // Die Spans in den Content-Container hinzufügen
-    content.appendChild(nameSpan);
-    content.appendChild(birthDateSpan);
-    content.appendChild(customerIdSpan);
-
-    // Content-Container in das Akkordeon einfügen
-    accordion.appendChild(content);
-
-    // Panel für die Kundeninformationen
-    const panel = document.createElement('div');
-    panel.classList.add('panel');
-    panel.innerHTML = `
-      <div class="table-container">
-        <table class="main-table">
-          <tr><th>Name:</th><td> ${customer.firstName} ${customer.lastName}</td></tr>
-          <tr><th>Geb.:</th><td> ${customer.birthDate}</td></tr>
-          <tr><th>Adresse:</th><td> ${customer.address}</td></tr>
-          <tr><th>Telefon:</th><td> ${customer.telefon}</td></tr>
-          <tr><th>E-Mail:</th><td> ${customer.eMail}</td></tr>
-        </table>
-
-        <table class="extra-table">
-          <tr><th>Abomodell:</th><td> ${customer.subscription}</td></tr>
-          <tr><th>Beitrag:</th><td>19.99</td></tr>
-          <tr><th>Abo-Start:</th><td> ${customer.subscriptionStart}</td></tr>
-        </table>
-      </div>
-      <span class='buttons'>
-      <div class="buttons-left">
-        <button type="button" id="card-button" class="card-button">Kundenkarte</button>
-        <button type="button" id="trainer-button" class="trainer-button">Trainer</button>
-        <button type="button" id="tarif-button" class="tarif-button" href="#" onclick="show('popup')">Tarif</button>
-      </div>
-      <div class="buttons-right">
-        <button class='button-edit'>bearbeiten</button>
-        <button class='button-delete'>löschen</button>
-      </div>
-      </span>
-      <div class="popup" id="popup">
-        <h2>M-Nr.: ${customer.customerID}</h2>
-        <label for="tarif">Tarif:</label>
-        <select id="tarif" name="tarif">
-          <option value="Klassisch">Klassisch</option>
-          <option value="Gold">Gold</option>
-          <option value="Premium">Premium</option>
-          <option value="auswählen" selected style="display:none">Tarif auswählen</option>
-        </select>
-        <a href="#" onclick="hide('popup')">Close</a>
-</div>
-    `;
-
-    // Eventlistener für Akkordeon zum Öffnen und Schließen
-    accordion.addEventListener('click', () => {
-      accordion.classList.toggle('active');
-      panel.style.maxHeight = panel.style.maxHeight ? null : panel.scrollHeight + "px";
-    });
+    // Eventlistener hinzufügen
+    addAccordionEventListener(accordion, panel);
 
     // Eventlistener für den "bearbeiten"-Button
     panel.querySelector('.button-edit').addEventListener('click', () => {
@@ -99,7 +127,6 @@ function generateAccordions(customers) {
 // API-Abfrage und Generierung der Akkordeons
 async function fetchAndGenerateAccordions() {
   try {
-    // Daten von der API abrufen
     const response = await fetch('http://localhost:3000/api/allcustomer');
     const items = await response.json(); // API-Antwort in JSON umwandeln
     
@@ -110,34 +137,70 @@ async function fetchAndGenerateAccordions() {
   }
 }
 
+// Funktion zum Speichern des Tarifs
+async function saveTariff() {
+  const saveButton = document.querySelector('.button-safe');
+  const tariffSelect = document.getElementById('tariff');
+
+  saveButton.addEventListener('click', async () => {
+    const selectedTariff = tariffSelect.value;
+
+    // Überprüfen, ob ein aktives Akkordeon vorhanden ist
+    const activeAccordion = document.querySelector('.accordion.active');
+    if (!activeAccordion) {
+      console.error('Kein aktives Akkordeon vorhanden.');
+      return;
+    }
+
+    // Hole die aktuelle Kunden-ID aus dem aktiven Akkordeon
+    const customerIDElement = activeAccordion.querySelector('.customer-id');
+    if (!customerIDElement) {
+      console.error('Kunden-ID konnte nicht gefunden werden.');
+      return;
+    }
+    
+    const customerID = customerIDElement.innerText.split(': ')[1]; // Extrahiere die ID
+
+    const today = new Date();
+    const formattedDate = today.toISOString().split('T')[0]; // Formatieren des heutigen Datums
+
+    const updateData = { 
+      subscription: selectedTariff,
+      subscriptionStart: formattedDate
+    };
+
+    try {
+      // Führe den API-Call aus
+      const response = await fetch(`http://localhost:3000/api/abo/${customerID}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updateData),
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Erfolg:', data);
+
+         // Seite neu laden, um die aktualisierten Daten anzuzeigen
+         window.location.reload();
+      } else {
+        console.error('Fehler beim Update:', await response.text());
+      }
+
+    } catch (error) {
+      console.error('Fehler beim Update:', error);
+    }
+  });
+}
 // Funktion aufrufen, um die Akkordeons zu generieren
 fetchAndGenerateAccordions();
 
-$ = function(id) {
+function $(id) {
   return document.getElementById(id);
 }
 
-var show = function(id) {
-	$(id).style.display ='block';
+function hide(id) {
+  $(id).style.display = 'none';
 }
-var hide = function(id) {
-	$(id).style.display ='none';
-}
-
-let customerSubscription = "${customer.subscription}"; // Beispiel: "Gold"
-
-    let selectElement = document.getElementById("tarif");
-    let foundMatch = false;
-
-    // Überprüfen, ob eine Option mit der Variable übereinstimmt
-    selectElement.querySelectorAll('option').forEach(option => {
-      if (option.value === customerSubscription) {
-        option.selected = true;
-        foundMatch = true;
-      }
-    });
-
-    // Wenn keine Übereinstimmung gefunden wurde, versteckte Option auswählen
-    if (!foundMatch) {
-      selectElement.querySelector('option[value="auswählen"]').selected = true;
-    }
