@@ -1,53 +1,16 @@
 [
     {
-        "firstName": "Max",
-        "lastName": "Mustermann",
-        "birthDate": "1990-01-01",
-        "address": "Musterstraße 1, 12345 Musterstadt",
-        "telefon": "01234 567890",
-        "eMail": "max@example.com",
-        "subscription": "Premium",
-        "subscriptionStart": "2023-01-01",
-        "trainerID": "T001",
-        "customerCardID": "C001",
-        "appointments": [
-            "2024-01-01",
-            "2024-02-01"
-        ],
-        "customerID": "random-generated-uuid-1"
-    },
-    {
-        "firstName": "Erika",
-        "lastName": "Musterfrau",
-        "birthDate": "1985-02-02",
-        "address": "Beispielstraße 2, 54321 Beispielstadt",
-        "telefon": "09876 543210",
-        "eMail": "erika@example.com",
-        "subscription": "Standard",
-        "subscriptionStart": "2022-02-02",
-        "trainerID": "T002",
-        "customerCardID": "C002",
-        "appointments": [
-            "2024-02-02",
-            "2024-03-02"
-        ],
-        "customerID": "random-generated-uuid-2"
-    },
-    {
-        "firstName": "John",
-        "lastName": "Doe",
-        "birthDate": "1980-03-03",
-        "address": "Hauptstraße 3, 67890 Großstadt",
-        "telefon": "01234 678901",
-        "eMail": "john@example.com",
-        "subscription": "Basic",
-        "subscriptionStart": "2021-03-03",
-        "trainerID": "T003",
-        "customerCardID": "C003",
-        "appointments": [
-            "2024-03-03",
-            "2024-04-03"
-        ],
-        "customerID": "random-generated-uuid-3"
+        "firstName": "2",
+        "lastName": "2",
+        "birthDate": "11111-11-11",
+        "address": "2, 2",
+        "telefon": "2",
+        "eMail": "2@1",
+        "subscription": "Platin",
+        "subscriptionStart": "2024-09-15",
+        "trainer": "asfd",
+        "customerCardID": "111",
+        "appointments": "nie",
+        "customerID": "dcac408b-cd0c-4606-a0bc-2da7436e00fd"
     }
 ]

@@ -2,7 +2,7 @@ import cors from 'cors';
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { readAllCustomer, writeCustomer, readCustomer, deleteAllCustomer, updatecustomer, deleteCustomer, aboManager, writeTrainer, readAllTrainer, readTrainer, updateTrainer, deleteTrainer, deleteAllTrainer } from './backend/manager.js';
+import { readAllCustomer, writeCustomer, readCustomer, deleteAllCustomer, updatecustomer, deleteCustomer, aboManager, cardManager, customerTrainerManager, writeTrainer, readAllTrainer, readTrainer, updateTrainer, deleteTrainer, deleteAllTrainer } from './backend/manager.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -54,13 +54,13 @@ app.post('/api/newcustomer', (req, res) => {
         eMail,
         subscription,
         subscriptionStart,
-        trainerID,
+        trainer,
         customerCardID,
         appointments
     } = req.body;
 
     try {
-        writeCustomer(firstName, lastName, birthDate, address, telefon, eMail, subscription, subscriptionStart, trainerID, customerCardID, appointments);
+        writeCustomer(firstName, lastName, birthDate, address, telefon, eMail, subscription, subscriptionStart, trainer, customerCardID, appointments);
         res.status(201).send({ message: 'Kunde erfolgreich erstellt' });
     } catch (error) {
         console.error("Fehler beim Erstellen des Kunden:", error);
@@ -77,12 +77,12 @@ app.put('/api/updatecustomer/:id', (req, res) => {
         address,
         telefon,
         eMail,
-        trainerID,
+        trainer,
         appointments
     } = req.body;
 
     try {
-        updatecustomer(customerID, firstName, lastName, birthDate, address, telefon, eMail, trainerID, appointments);
+        updatecustomer(customerID, firstName, lastName, birthDate, address, telefon, eMail, trainer, appointments);
         res.status(200).send({ message: 'Kunde erfolgreich bearbeitet' });
     } catch (error) {
         if(error.message == "Kunde mit der ID nicht gefunden"){
@@ -111,6 +111,43 @@ app.put('/api/abo/:id', (req, res) => {
         }
     }
 })
+
+app.put('/api/card/:id', (req, res) => {
+    const customerID = req.params.id
+    const {
+        customerCardID
+    } = req.body;
+
+    try {
+        cardManager(customerID, customerCardID);
+        res.status(200).send({ message: 'Karte wurde hinzugefügt' });
+    } catch (error) {
+        if(error.message == "Kunde mit der ID nicht gefunden"){
+            res.status(404).send({ error: error.message });
+        }else{
+            res.status(500).send({ error: 'Fehler beim bearbeiten der Kundenkarte' });
+        }
+    }
+})
+
+app.put('/api/customertrainer/:id', (req, res) => {
+    const customerID = req.params.id
+    const {
+        trainer
+    } = req.body;
+
+    try {
+        customerTrainerManager(customerID, trainer);
+        res.status(200).send({ message: 'Trainer wurde hinzugefügt' });
+    } catch (error) {
+        if(error.message == "Kunde mit der ID nicht gefunden"){
+            res.status(404).send({ error: error.message });
+        }else{
+            res.status(500).send({ error: 'Fehler beim bearbeiten des Personaltrainers' });
+        }
+    }
+})
+
 
 
 app.delete('/api/deletecustomer/:id', (req, res) => {
