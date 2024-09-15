@@ -41,6 +41,9 @@ function getPanelHTMLFromTemplate(customer) {
     .replace('E_MAIL', customer.eMail)
     .replace('SUBSCRIPTION', customer.subscription)
     .replace('SUBSCRIPTION_START', customer.subscriptionStart)
+    .replace('C_ID', customer.customerID)
+    .replace('C_ID', customer.customerID)
+    .replace('C_ID', customer.customerID)
     .replace('C_ID', customer.customerID);
 }
 
