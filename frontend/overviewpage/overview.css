@@ -315,4 +315,5 @@ td {
 #create-button{
     min-width: 15%;
     font-size: 1rem;
+    border-radius: 5px;
   }
