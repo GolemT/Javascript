@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/GolemT/Javascript#readme",
   "dependencies": {
-    "express": "^4.19.2",
-    "uuid": "^10.0.0"
+    "express": "^4.19.2"
   }
 }
