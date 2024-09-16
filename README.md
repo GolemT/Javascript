@@ -16,7 +16,7 @@ The Server will be started on http://localhost:3000
 
 ### Mainpage
 
-Shows the possible abonnements for the customers of the studio
+Shows the possible subscriptions for the customers of the studio
 
 the Mainpage can be reached on http://localhost:3000/abo_page/abo.html
 
