@@ -5,8 +5,6 @@
 Installation of the dependencies
 
         npm init
-        npm install express
-        npm install uuid
 
 To run the Backend run
 
