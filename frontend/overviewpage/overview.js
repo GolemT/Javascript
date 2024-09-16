@@ -41,6 +41,8 @@ function getPanelHTMLFromTemplate(customer) {
     .replace('E_MAIL', customer.eMail)
     .replace('SUBSCRIPTION', customer.subscription)
     .replace('SUBSCRIPTION_START', customer.subscriptionStart)
+    .replace('CARD_ID', customer.customerCardID)
+    .replace('TRAINER', customer.trainer)
     .replace('C_ID', customer.customerID)
     .replace('C_ID', customer.customerID)
     .replace('C_ID', customer.customerID)
@@ -66,6 +68,31 @@ function createPanel(customer) {
     }
   }
 
+  const select_trainer = panel.querySelector('#trainer');
+  const options_trainer = select_trainer.options;
+
+  for ( let i = 0; i < options_trainer.length; i++) {
+    if (options_trainer[i].value === customer.trainer) {
+      options_trainer[i].selected = true;
+      break;
+    } else {
+      options_trainer[5].selected = true;
+    }
+  }
+
+  const select_card = panel.querySelector('#card_id');
+  const options_card = select_card.options;
+
+  // Wenn der Kunde ein Abo hat, diesen vorauswählen, sonst "Tarif wählen"
+  for ( let i = 0; i < options_card.length; i++) {
+    if (options_card[i].value === customer.customerCardID) {
+      options_card[i].selected = true;
+      break;
+    } else {
+      options_card[5].selected = true; // "Tarif wählen"
+    }
+  }
+
   // Eventlistener für den "löschen"-Button
 panel.querySelector('#delete').addEventListener('click', () => {
   deleteCustomer(customer.customerID); // Aufruf der Löschfunktion
@@ -79,9 +106,22 @@ function show(id) {
   const popup = $(id);
   popup.style.display = 'block';
 
-  // Funktion aufrufen, um den Tarif-Button zu initialisieren
-  saveTariff();
-  deleteCustomer();
+  switch (id) {
+    case 'popup_card':
+      saveCard();
+      break;
+    case 'popup_trainer':
+      saveTrainer();
+      break;
+    case 'popup_tariff':
+      saveTariff();
+      break;
+    case 'popup_delete':
+      deleteCustomer();
+      break;
+    default:
+      break;
+  }
 }
 
 function addAccordionEventListener(accordion, panel) {
@@ -148,7 +188,7 @@ async function fetchAndGenerateAccordions() {
 
 // Funktion zum Speichern des Tarifs
 async function saveTariff() {
-  const saveButton = document.querySelector('.button-safe');
+  const saveButton = document.querySelector('#save-tariff');
   const tariffSelect = document.getElementById('tariff');
 
   saveButton.addEventListener('click', async () => {
@@ -181,6 +221,114 @@ async function saveTariff() {
     try {
       // Führe den API-Call aus
       const response = await fetch(`http://localhost:3000/api/abo/${customerID}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updateData),
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Erfolg:', data);
+
+         // Seite neu laden, um die aktualisierten Daten anzuzeigen
+         window.location.reload();
+      } else {
+        console.error('Fehler beim Update:', await response.text());
+      }
+
+    } catch (error) {
+      console.error('Fehler beim Update:', error);
+    }
+  });
+}
+
+// Funktion zum Speichern des Trainers
+async function saveTrainer() {
+  const saveButton = document.querySelector('#save-trainer');
+  const trainerSelect = document.getElementById('trainer');
+
+  saveButton.addEventListener('click', async () => {
+    const selectedTrainer = trainerSelect.value;
+
+    // Überprüfen, ob ein aktives Akkordeon vorhanden ist
+    const activeAccordion = document.querySelector('.accordion.active');
+    if (!activeAccordion) {
+      console.error('Kein aktives Akkordeon vorhanden.');
+      return;
+    }
+
+    // Hole die aktuelle Kunden-ID aus dem aktiven Akkordeon
+    const customerIDElement = activeAccordion.querySelector('.customer-id');
+    if (!customerIDElement) {
+      console.error('Kunden-ID konnte nicht gefunden werden.');
+      return;
+    }
+    
+    const customerID = customerIDElement.innerText.split(': ')[1]; // Extrahiere die ID
+
+    const updateData = { 
+      trainer: selectedTrainer
+    };
+
+    try {
+      // Führe den API-Call aus
+      const response = await fetch(`http://localhost:3000/api/customertrainer/${customerID}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updateData),
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Erfolg:', data);
+
+         // Seite neu laden, um die aktualisierten Daten anzuzeigen
+         window.location.reload();
+      } else {
+        console.error('Fehler beim Update:', await response.text());
+      }
+
+    } catch (error) {
+      console.error('Fehler beim Update:', error);
+    }
+  });
+}
+
+// Funktion zum Speichern der Kundenkarte
+async function saveCard() {
+  const saveButton = document.querySelector('#save-card');
+  const cardSelect = document.getElementById('card_id');
+
+  saveButton.addEventListener('click', async () => {
+    const selectedCard = cardSelect.value;
+
+    // Überprüfen, ob ein aktives Akkordeon vorhanden ist
+    const activeAccordion = document.querySelector('.accordion.active');
+    if (!activeAccordion) {
+      console.error('Kein aktives Akkordeon vorhanden.');
+      return;
+    }
+
+    // Hole die aktuelle Kunden-ID aus dem aktiven Akkordeon
+    const customerIDElement = activeAccordion.querySelector('.customer-id');
+    if (!customerIDElement) {
+      console.error('Kunden-ID konnte nicht gefunden werden.');
+      return;
+    }
+    
+    const customerID = customerIDElement.innerText.split(': ')[1]; // Extrahiere die ID
+
+    const updateData = { 
+      customerCardID: selectedCard
+    };
+
+    try {
+      // Führe den API-Call aus
+      const response = await fetch(`http://localhost:3000/api/card/${customerID}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -247,7 +395,7 @@ async function deleteCustomer() {
       });
       
       if (response.ok) {
-        console.log(`Kunde mit ID ${customerID} wurde erfolgreich gelöscht.`);
+        console.log('Kunde mit ID ${customerID} wurde erfolgreich gelöscht.');
         // Seite neu laden, um die Änderungen anzuzeigen
         window.location.reload();
       } else {
@@ -257,4 +405,4 @@ async function deleteCustomer() {
       console.error('Fehler bei der Löschanfrage:', error);
     }
   })
-  }
+  };
