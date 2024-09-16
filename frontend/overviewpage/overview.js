@@ -31,6 +31,23 @@ function createAccordion(customer) {
 function getPanelHTMLFromTemplate(customer) {
   const template = document.getElementById('customer-panel-template').innerHTML;
 
+  var price = "0,00€";
+
+  switch (customer.subscription) {
+    case "Klassisch":
+      price = "19,99€";
+      break;
+    case "Gold":
+      price = "39,99€";
+      break;
+    case "Platin":
+      price = "69,99€";
+      break;
+  
+    default:
+      break;
+  }
+
   // Platzhalter mit Kundendaten ersetzen
   return template
     .replace('FIRST_NAME', customer.firstName)
@@ -40,6 +57,7 @@ function getPanelHTMLFromTemplate(customer) {
     .replace('TELEFON', customer.telefon)
     .replace('E_MAIL', customer.eMail)
     .replace('SUBSCRIPTION', customer.subscription)
+    .replace('PRICE', price)
     .replace('SUBSCRIPTION_START', customer.subscriptionStart)
     .replace('CARD_ID', customer.customerCardID)
     .replace('TRAINER', customer.trainer)
