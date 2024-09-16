@@ -3,5 +3,5 @@ document.getElementById('receptionist-login').addEventListener('click', () => {
 });
     
 document.getElementById('home-button').addEventListener('click', () => {
-    window.location.href = '../index.html';
+    window.location.href = '../abo_page/abo.html';
 });
