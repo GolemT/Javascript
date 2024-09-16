@@ -1,1 +1,16 @@
-[]
+[
+    {
+        "firstName": "Max",
+        "lastName": "Mustermann",
+        "birthDate": "4454-04-23",
+        "address": "Musterstraße 1, 12345 Musterdorf",
+        "telefon": "01234 567890",
+        "eMail": "max@example.com",
+        "subscription": "",
+        "subscriptionStart": "",
+        "trainer": "",
+        "customerCardID": "",
+        "appointments": "",
+        "customerID": "2497630e-a14e-4668-9f8b-80b7a0d822eb"
+    }
+]

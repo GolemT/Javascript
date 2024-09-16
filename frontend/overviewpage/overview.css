@@ -43,26 +43,16 @@ td {
 }
 
 .accordion-content {
-    display: flex;
-    justify-content: space-between;
+    align-items: center;
     width: 100%;
 }
 
 .accordion-content span {
     flex: 1;
-    text-align: center;
-}
-
-.name {
-    text-align: left;
-}
-
-.birth-date {
-    text-align: center;
+    margin-left: 5%;
 }
 
 .customer-id {
-    text-align: right;
     cursor: text;
 }
 
@@ -138,7 +128,7 @@ td {
     height: 30vh;
     top: 30vh;
     margin-top: -100px;
-    background: #FFF;
+    background: #2F2F2F;
     text-align: center;
     border-radius: 10px;
   }
@@ -162,7 +152,7 @@ td {
     appearance: none;
     width: 50%;
     font-size: 1.15rem;
-    padding: 0.675em 6em 0.675em 1em;
+    padding: 0.675em 1em 0.675em 1em;
     background-color: #1C1C1C;
     border: none;
     border-radius: 0.25rem;
@@ -208,6 +198,56 @@ td {
   }
   
   #popup_tariff:before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #2F2F2F;
+    z-index: -1;
+    border-radius: 10px;
+  }
+
+  /*Popup Kundenkarte*/
+  
+  #popup_card:after {
+    position: fixed;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: -2;
+  }
+  
+  #popup_card:before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #2F2F2F;
+    z-index: -1;
+    border-radius: 10px;
+  }
+
+  /*Popup Trainer*/
+  
+  #popup_trainer:after {
+    position: fixed;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: -2;
+  }
+  
+  #popup_trainer:before {
     position: absolute;
     content: "";
     top: 0;
@@ -275,4 +315,5 @@ td {
 #create-button{
     min-width: 15%;
     font-size: 1rem;
+    border-radius: 5px;
   }

@@ -22,6 +22,7 @@
                 <li><a href="../abo_page/abo.html" class="nav-link">Abo</a></li>
                 <li><a href="" class="nav-link">Geräte</a></li>
                 <li><a href="" class="nav-link">Probetraining</a></li>
+                <li><a href="" class="nav-link">Kurse</a></li>
                 <li><a href="../overviewpage/overview.html" class="nav-link">Mitglieder</a></li>
             </ul>
         </div>
@@ -60,6 +61,8 @@
                 <tr><th>Abomodell:</th><td>SUBSCRIPTION</td></tr>
                 <tr><th>Beitrag:</th><td>19.99</td></tr>
                 <tr><th>Abo-Start:</th><td>SUBSCRIPTION_START</td></tr>
+                <tr><th>Kundenkarte:</th><td>CARD_ID</td></tr>
+                <tr><th>Trainer:</th><td>TRAINER</td></tr>
             </table>
         </div>
         <span class='buttons'>
@@ -69,15 +72,15 @@
                 <button class="button" href="#" onclick="show('popup_tariff')">Tarif</button>
             </div>
             <div class="buttons-right">
-                <button class='button-edit'>bearbeiten</button>
+                <button class='button-edit'>Bearbeiten</button>
                 <button class='button-delete' href="#" onclick="show('popup_delete')">Löschen</button>
             </div>
         </span>
 
-        <!--Tarifkarte-->
+        <!--Tarif Popup-->
         <div class="popup" id="popup_tariff">
             <h2>M-Nr.: C_ID</h2>
-            <h1>Tarif:</h1>
+            <h1>Tarif</h1>
             <div class="custom-select">
                 <select name="tariff" id="tariff">
                     <option value="Klassisch">Klassisch</option>
@@ -87,8 +90,48 @@
                 </select>
             </div>
             <div class="buttons">
-                <button class="button-safe">Speichern</button>
+                <button class="button-safe" id="save-tariff">Speichern</button>
                 <button class="button-negative" onclick="hide('popup_tariff')">Abbrechen</button>
+            </div>
+        </div>
+
+        <!--Kundenkarte Popup-->
+        <div class="popup" id="popup_card">
+            <h2>M-Nr.: C_ID</h2>
+            <h1>Kundenkarte</h1>
+            <div class="custom-select">
+                <select name="card_id" id="card_id">
+                    <option value="C12345">C12345</option>
+                    <option value="C67890">C67890</option>
+                    <option value="C11223">C11223</option>
+                    <option value="C44556">C44556</option>
+                    <option value="C78901">C78901</option>
+                    <option value="" style="display: none;">Karte wählen</option>
+                </select>
+            </div>
+            <div class="buttons">
+                <button class="button-safe" id="save-card">Speichern</button>
+                <button class="button-negative" onclick="hide('popup_card')">Abbrechen</button>
+            </div>
+        </div>
+
+        <!--Trainer Popup-->
+        <div class="popup" id="popup_trainer">
+            <h2>M-Nr.: C_ID</h2>
+            <h1>Trainer</h1>
+            <div class="custom-select">
+                <select name="trainer" id="trainer">
+                    <option value="Maximilian Weber">Maximilian Weber</option>
+                    <option value="Sophie Müller">Sophie Müller</option>
+                    <option value="Lukas Schmidt">Lukas Schmidt</option>
+                    <option value="Laura Meyer">Laura Meyer</option>
+                    <option value="Felix Schneider">Felix Schneider</option>
+                    <option value="" style="display: none;">Trainer wählen</option>
+                </select>
+            </div>
+            <div class="buttons">
+                <button class="button-safe" id="save-trainer">Speichern</button>
+                <button class="button-negative" onclick="hide('popup_trainer')">Abbrechen</button>
             </div>
         </div>
 
