@@ -1,1 +1,30 @@
-
+[
+    {
+        "firstName": "Max",
+        "lastName": "Mustermann",
+        "birthDate": "2002-05-12",
+        "address": "Musterstraße 1, 12345 Musterdorf",
+        "telefon": "01234 567890",
+        "eMail": "max@example.com",
+        "subscription": "Platin",
+        "subscriptionStart": "2024-09-16",
+        "trainer": "Laura Meyer",
+        "customerCardID": "C67890",
+        "appointments": "",
+        "customerID": "75088-1628"
+    },
+    {
+        "firstName": "Mia",
+        "lastName": "Musterfrau",
+        "birthDate": "1999-12-31",
+        "address": "Musterweg 12, 12345 Musterstadt",
+        "telefon": "09876 54321",
+        "eMail": "mia@test.com",
+        "subscription": "",
+        "subscriptionStart": "",
+        "trainer": "",
+        "customerCardID": "",
+        "appointments": "",
+        "customerID": "57070-1654"
+    }
+]
