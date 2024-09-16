@@ -1,4 +1,3 @@
-import cors from 'cors';
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -17,7 +16,18 @@ app.listen(port, () => {
 });
 
 app.use(express.json()) 
-app.use(cors());
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*'); // Erlaubt Anfragen von allen Domains
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'); // Erlaubt die HTTP-Methoden
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Erlaubt bestimmte Header
+  
+    // Wenn die Anfrage eine "OPTIONS"-Anfrage ist, direkt mit Status 200 antworten
+    if (req.method === 'OPTIONS') {
+      return res.sendStatus(200);
+    }
+  
+    next();
+  });
 
 //------------------------------------------customer------------------------------------------
 app.get('/api/allcustomer', (req, res) => {
