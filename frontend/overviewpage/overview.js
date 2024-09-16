@@ -395,7 +395,7 @@ async function deleteCustomer() {
       });
       
       if (response.ok) {
-        console.log('Kunde mit ID ${customerID} wurde erfolgreich gelöscht.');
+        console.log(`Kunde mit ID ${customerID} wurde erfolgreich gelöscht.`);
         // Seite neu laden, um die Änderungen anzuzeigen
         window.location.reload();
       } else {
