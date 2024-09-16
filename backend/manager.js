@@ -2,8 +2,18 @@ import fs from 'fs';
 import Customers from './customers.js';
 import Trainer from './trainers.js'
 import { error } from 'console';
-import { v4 as uuidv4 } from 'uuid';
 
+function newUUID(){
+    //Getting the Date
+    var currentdate = new Date();
+    var DateHour = String(currentdate.getDate()) + String(currentdate.getSeconds());
+    //Random Number
+    var randomInt = (Math.random() * (99999 - 10000) + 10000); //Generiert eine Zahl zwischen 10000 und 99999
+    randomInt = Math.round(randomInt);
+    //Merging the Two
+    var UUID = String(randomInt + "-" + DateHour);
+    return UUID;
+}
 
 export function readAllCustomer(){
     var customerData = fs.readFileSync('backend/data/customers.json', 'utf-8')
@@ -32,7 +42,7 @@ export function readCustomer(customerID){
 }
 
 export function writeCustomer(firstName, lastName, birthDate, address, telefon, eMail, subscription, subscriptionStart, trainer, customerCardID, appointments) {
-    let customerID = uuidv4();
+    let customerID = newUUID();
     let customer = new Customers(
         firstName,
         lastName, 
@@ -242,7 +252,7 @@ export function readTrainer(trainerID){
 }
 
 export function writeTrainer(firstName, lastName, course, customerID) {
-    let trainerID = uuidv4();
+    let trainerID = newUUID();
     let trainer = new Trainer(
         firstName,
         lastName, 
