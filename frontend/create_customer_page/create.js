@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         eMail: document.getElementById('eMail').value.trim(),
         subscription: '',
         subscriptionStart: '',
-        trainerID: '',
+        trainer: '',
         customerCardID: '',
         appointments: ''
         };

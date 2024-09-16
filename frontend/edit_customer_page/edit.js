@@ -95,3 +95,9 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => console.error('Fehler beim Laden der Kundendaten:', error));
     }
 });
+
+const nono_button = document.getElementById('nonoButton');
+
+nono_button.addEventListener('click', () => {
+    window.location.href = '../overviewpage/overview.html';
+})

@@ -12,6 +12,38 @@ To run the Backend run
 
 The Server will be started on http://localhost:3000
 
+## Routing
+
+### Mainpage
+
+Shows the possible abonnements for the customers of the studio
+
+the Mainpage can be reached on http://localhost:3000/abo_page/abo.html
+
+### Loginpage
+
+Shows the Loginpage for the eployees of the fitnessstudio with a possibility to go to the Mainpage
+
+the Loginpage can be reached on http://localhost:3000/ma_login/login.html
+
+### Overviewpage
+
+Shows all customers and handels the routing to manage them
+
+the Overviewpage can be reached on http://localhost:3000/overviewpage/overview.html
+
+### Createpage
+
+Shows a Formfield to create new customerdatas
+
+the Createpage can be reached on http://localhost:3000/create_customer_page/create.html
+
+### Editpage
+
+Shows a Formfield to edit existing customerdatas
+
+the Editpage can be reached on http://localhost:3000/edit_customer_page/edit.html
+
 ## API Reference
 
 ### Customers
