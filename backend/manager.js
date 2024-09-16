@@ -191,7 +191,7 @@ export function deleteCustomer(customerID){
         for(index = 0; index < customerArray.length; index++){
             if(customerArray[index].customerID == customerID){
                 customerArray.splice(index, 1);
-                index = 0;
+                index--;
                 break;
             };
         };
@@ -310,7 +310,7 @@ export function deleteTrainer(trainerID){
         for(index = 0; index < trainerArray.length; index++){
             if(trainerArray[index].trainerID == trainerID){
                 trainerArray.splice(index, 1);
-                index = 0;
+                index--;
                 break;
             };
         };
